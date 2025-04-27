@@ -1,7 +1,7 @@
 import Display from "./Display";
 import Button from "./Button";
 import History from "./History";
-import Theme from "./Theme";
+//import Theme from "./Theme";
 import '../index.css';
 import { useState, useEffect } from "react";
 
@@ -12,7 +12,7 @@ const Calculator= function(){
     const [history, setHistory] = useState<string[]>([]);
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
-    const buttonClick = function(text: string){
+    const buttonClick = function(text: string) {
         if (text === 'C') {
             setInput('');
             setResult('');
@@ -26,7 +26,7 @@ const Calculator= function(){
                 const evalResult = eval(input);
                 setResult(evalResult.toString());
                 setHistory([...history, `${input} = ${evalResult}`]); 
-                setInput('');
+                setInput(''); 
             } catch (error: unknown) {
                 if (error instanceof Error) {
                     setResult('Ошибка: ' + error.message);
@@ -63,95 +63,100 @@ const Calculator= function(){
         setTheme(newTheme);
         document.body.className = newTheme;
     };
-    const displayHistory = () => {
-        alert(history.join('\n'));
-    };
+    // const displayHistory = () => {
+    //     alert(history.join('\n'));
+    // };
     return (
-        <div className={`flex flex-col items-center justify-center min-h-screen`}>
-            <Display input={input} result={result} />
-            <div className={`w-[250px] flex flex-wrap`}>
-                <Button
-                    text="7"
-                    callback={buttonClick}
-                ></Button>
-                <Button
-                    text="8"
-                    callback={buttonClick}
-                ></Button>
-                <Button
-                    text="9"
-                    callback={buttonClick}
-                ></Button>
-                <Button
-                    text="/"
-                    callback={buttonClick}
-                ></Button>
-                <Button
-                    text="4"
-                    callback={buttonClick}
-                ></Button>
-                <Button
-                    text="5"
-                    callback={buttonClick}
-                ></Button>
-                <Button
-                    text="6"
-                    callback={buttonClick}
-                ></Button>
-                <Button
-                    text="*"
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="1"
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="2"
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="3"
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="-"
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="."
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="0"
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="="
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="+"
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="C"
-                    callback={buttonClick}
-                ></Button>
-                 <Button
-                    text="Del"
-                    callback={buttonClick}
-                ></Button>
-                <History 
-                    text="His" 
-                    callback={displayHistory}>
-                </History>
-                <Theme 
-                    text="Theme"
-                    callback={changeTheme}>
-                </Theme>
+        <div className={`flex flex-row w-[1200px] justify-center items-center`}>
+            <div className={`flex flex-col items-center justify-center min-h-screen mr-[50px]`}>
+                <Display input={input} result={result} />
+                <div className={`w-[250px] flex flex-wrap`}>
+                    <Button
+                        text="7"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="8"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="9"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="/"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="4"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="5"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="6"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="*"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="1"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="2"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="3"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="-"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="."
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="0"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="="
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="+"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="C"
+                        callback={buttonClick}
+                    ></Button>
+                    <Button
+                        text="Del"
+                        callback={buttonClick}
+                    ></Button>
+                    {/* <Button 
+                        text="His" 
+                        callback={displayHistory}>
+                    </Button> */}
+                    <Button 
+                        text="Theme"
+                        callback={changeTheme}>
+                    </Button>
+                </div>
+                
             </div>
+            <History hist={history} />
         </div>
+        
     );
 }
 export default Calculator;

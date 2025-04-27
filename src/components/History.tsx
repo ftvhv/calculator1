@@ -1,10 +1,18 @@
 interface IHis{
-    text: string,
-    callback(text: string): void;
+    hist: string[],
 }
-const History: React.FC<IHis>=function({text, callback}){
+const History: React.FC<IHis>=function({hist}){
     return(
-        <button className={`w-[50px] h-[50px] border-1 m-1 bg-[#ffaa00] text-black`} onClick={()=>callback(text)}>{text}</button>
+        <div>
+            <h3>История вычислений:</h3>
+            <div>
+                {hist.map((item, index)=>(
+                    <div key={index}>
+                        {item}
+                    </div>
+                ))}
+            </div>
+        </div>
     )
 }
 export default History;
